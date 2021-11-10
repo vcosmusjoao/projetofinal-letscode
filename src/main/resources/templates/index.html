@@ -1,13 +1,27 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Sign Up - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+    a{
+        color:#fff;
+    }
+</style>
+
 <h1>Welcome</h1>
 <a th:href="@{/login}">Log in</a>
 <a th:href="@{/registro}">Registrar</a>
-
+  
+<div class="container text-center">
+<h1>Minhas Anotações</h1>
+<button class="btn btn-info"><a  th:href="@{/login}">Log in</a></button>
+<button class="btn btn-info"><a  th:href="@{/registra}">Registrar</a>
+</button>
+</div>
 </body>
 </html>

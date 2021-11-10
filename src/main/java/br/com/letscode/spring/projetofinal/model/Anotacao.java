@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Anotacoes")
 public class Anotacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
