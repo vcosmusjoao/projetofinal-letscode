@@ -14,19 +14,6 @@ public class LoginController {
     @Autowired
     private UsuarioRepository userRepo;
 
-    @GetMapping("/registra")
-    public String mostrarFormularioDeRegistro(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        return "cadastro";
-    }
-
-    @PostMapping("/processo_registrar")
-    public String processRegister(Usuario usuario) {
-        userRepo.save(usuario);
-
-        return "login";
-    }
-
     @RequestMapping( value="/login", method = RequestMethod.GET)
     public String getLoginForm(){
         return "login";
@@ -38,12 +25,13 @@ public class LoginController {
         String senha = loginForm.getSenha();
 
         Usuario usuario = userRepo.findByEmailAndSenha(email, senha);
-        model.addAttribute(usuario.getNome(),true);
 
-        return "home";
+        if (usuario != null) {
+            model.addAttribute(usuario.getNome(),true);
+            return "request:/home";
+        }
+
+        model.addAttribute("erroLogin", "Usuário inválido!");
+        return "login";
     }
-
-
-
-
 }
