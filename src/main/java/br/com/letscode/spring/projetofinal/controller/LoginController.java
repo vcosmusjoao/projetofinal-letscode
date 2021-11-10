@@ -27,22 +27,20 @@ public class LoginController {
         return "login";
     }
 
-
     @RequestMapping( value="/login", method = RequestMethod.GET)
     public String getLoginForm(){
         return "login";
     }
 
     @RequestMapping( value="/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute(name="loginform")LoginForm loginForm, Model model){
-        String email=loginForm.getEmail();
-        String senha= loginForm.getSenha();
+    public String login(@ModelAttribute(name = "loginForm")LoginForm loginForm, Model model){
+        String email = loginForm.getEmail();
+        String senha = loginForm.getSenha();
 
-        Usuario usuario=userRepo.findByEmail(email);
-
+        Usuario usuario = userRepo.findByEmailAndSenha(email, senha);
         model.addAttribute(usuario.getNome(),true);
 
-        return "login";
+        return "home";
     }
 
 
