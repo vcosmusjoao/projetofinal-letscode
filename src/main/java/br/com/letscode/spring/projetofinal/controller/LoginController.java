@@ -23,7 +23,6 @@ public class LoginController {
     @PostMapping("/processo_registrar")
     public String processRegister(Usuario usuario) {
         userRepo.save(usuario);
-
         return "login";
     }
 
