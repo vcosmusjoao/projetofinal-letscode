@@ -2,6 +2,7 @@ package br.com.letscode.spring.projetofinal.model;
 
 import lombok.*;
 
+
 @Getter
 @Setter
 @NoArgsConstructor

@@ -4,11 +4,13 @@ import br.com.letscode.spring.projetofinal.model.Anotacao;
 import br.com.letscode.spring.projetofinal.model.UsuariosLogados;
 import br.com.letscode.spring.projetofinal.repository.AnotacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -20,13 +22,14 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("nome", logins.getUsuarios(0).getNome());
-
-        if (anotacao.findAll().size() == 0) {
+        model.addAttribute("nome", logins.getUsuarios().getNome());
+        if (anotacao.buscarTodos(logins.getUsuarios().getId()).size() == 0) {
             model.addAttribute("nullNotas", "Você não possui notas!");
         }
-
-        model.addAttribute("allNotas", anotacao.findAll());
+        model.addAttribute("allNotas", anotacao.buscarTodos(logins.getUsuarios().getId()));
         return "home";
     }
+
+
+
 }
