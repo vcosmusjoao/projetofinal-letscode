@@ -1,26 +1,32 @@
 package br.com.letscode.spring.projetofinal.controller;
 
-import br.com.letscode.spring.projetofinal.model.Usuario;
+import br.com.letscode.spring.projetofinal.model.Anotacao;
 import br.com.letscode.spring.projetofinal.model.UsuariosLogados;
 import br.com.letscode.spring.projetofinal.repository.AnotacaoRepository;
-import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private UsuariosLogados logins;
-    //private AnotacaoRepository anotacaoRepository;
+    @Autowired
+    private AnotacaoRepository anotacao;
 
     @GetMapping("/home")
     public String home(Model model) {
         model.addAttribute("nome", logins.getUsuarios(0).getNome());
+
+        if (anotacao.findAll().size() == 0) {
+            model.addAttribute("nullNotas", "Você não possui notas!");
+        }
+
+        model.addAttribute("allNotas", anotacao.findAll());
         return "home";
     }
 }
