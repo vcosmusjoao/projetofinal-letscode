@@ -12,6 +12,7 @@
     <div>
       <h1>Registro de Novo Usuário</h1>
     </div>
+    <a th:href="@{/}" class="btn btn-info">Voltar</a>
     <form th:action="@{/processo_registrar}" th:object="${usuario}"
           method="post" style="max-width: 600px; margin: 0 auto;">
       <div class="m-3">
@@ -37,11 +38,8 @@
                    required minlength="2" maxlength="20"/>
           </div>
         </div>
-
-
-
         <div>
-          <button type="submit" class="btn btn-info">Sign Up</button>
+          <button type="submit" class="btn btn-info">Cadastrar</button>
         </div>
       </div>
     </form>
