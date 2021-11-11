@@ -30,6 +30,7 @@
 
             <div class="notas" th:each="notas : ${allNotas}">
                 <p th:text="${notas.titulo}"></p>
+                <a th:href="${'/anotacao/' + notas.id}" class="btn btn-info">Ver</a>
             </div>
         </div>
     </div>
