@@ -22,11 +22,11 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("nome", logins.getUsuarios(0).getNome());
 
-        if (anotacao.findAll().size() == 0) {
+        if (anotacao.buscarTodos(logins.getUsuarios(0).getId()).size() == 0) {
             model.addAttribute("nullNotas", "Você não possui notas!");
         }
 
-        model.addAttribute("allNotas", anotacao.findAll());
+        model.addAttribute("allNotas", anotacao.buscarTodos(logins.getUsuarios(0).getId()));
         return "home";
     }
 }
