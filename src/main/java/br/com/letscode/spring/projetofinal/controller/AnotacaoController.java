@@ -19,7 +19,11 @@ public class AnotacaoController {
 
     @RequestMapping( value="/anotacao", method = RequestMethod.GET)
     public String getCadastroForm(){
-        return "cadastro-anotacao";
+        if (usuariosLogados.getUsuarios().getId() != null) {
+            return "cadastro-anotacao";
+        }
+
+        return "redirect:/login";
     }
 
     @PostMapping("/cadastro_anotacao")
@@ -32,9 +36,13 @@ public class AnotacaoController {
 
     @GetMapping("/anotacao/{id}")
     public String getAnotacao(@PathVariable Long id, Model model) {
-        Anotacao anotacao = anotacaoRepository.getById(id);
-        model.addAttribute("anotacao", anotacao);
+        if (usuariosLogados.getUsuarios().getId() != null) {
+            Anotacao anotacao = anotacaoRepository.getById(id);
+            model.addAttribute("anotacao", anotacao);
 
-        return "/anotacao";
+            return "/anotacao";
+        }
+
+        return "redirect:/login";
     }
 }

@@ -17,12 +17,17 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("nome", logins.getUsuarios().getNome());
-        if (anotacao.buscarTodos(logins.getUsuarios().getId()).size() == 0) {
-            model.addAttribute("nullNotas", "Você não possui notas!");
-        }
-        model.addAttribute("allNotas", anotacao.buscarTodos(logins.getUsuarios().getId()));
+        if (logins.getUsuarios().getId() != null) {
+            model.addAttribute("nome", logins.getUsuarios().getNome());
 
-        return "home";
+            if (anotacao.buscarTodos(logins.getUsuarios().getId()).size() == 0) {
+                model.addAttribute("nullNotas", "Você não possui notas!");
+            }
+            model.addAttribute("allNotas", anotacao.buscarTodos(logins.getUsuarios().getId()));
+
+            return "home";
+        }
+
+        return "redirect:/login";
     }
 }
