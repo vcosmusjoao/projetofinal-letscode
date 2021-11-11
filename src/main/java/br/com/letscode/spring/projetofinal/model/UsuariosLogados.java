@@ -6,16 +6,13 @@ import java.util.ArrayList;
 
 @Component
 public class UsuariosLogados {
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
-
-    public UsuariosLogados() {
-    }
+    private Usuario usuarios = new Usuario();
 
     public void setUsuarios(Usuario usuarios) {
-        this.usuarios.add(usuarios);
+        this.usuarios=usuarios;
     }
 
-    public Usuario getUsuarios(int index) {
-        return this.usuarios.get(index);
+    public Usuario getUsuarios() {
+        return this.usuarios;
     }
 }
