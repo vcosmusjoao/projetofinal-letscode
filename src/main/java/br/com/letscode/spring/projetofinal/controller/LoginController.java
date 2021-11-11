@@ -28,7 +28,7 @@ public class LoginController {
 
         if (usuario != null) {
             model.addAttribute(usuario.getNome(),true);
-            return "request:/home";
+            return "redirect:/home";
         }
 
         model.addAttribute("erroLogin", "Usuário inválido!");
