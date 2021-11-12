@@ -11,13 +11,13 @@
     <style>
         .containerNotas {
             width: 100%;
-            height: 500px;
             overflow: auto;
-            margin:0 auto;
-            margin-top:10px;
-            display:flex;
+            margin: 0 auto;
+            margin-top: 0px;
+            margin-top: 10px;
+            display: flex;
             justify-content: center;
-
+            flex-wrap: wrap;
         }
 
         .notas {
@@ -28,7 +28,13 @@
             margin-left: 10px;
             padding: 10px;
             text-align: center;
-            color:$orange-300;
+            text-transform: uppercase;
+        }
+
+        .titulo {
+            padding-top: 2vw;
+            padding-left: 1vw;
+            padding-right: 1vw;
         }
     </style>
 
@@ -41,8 +47,11 @@
             <p th:text="${nullNotas}"></p>
 
             <div class="notas" th:each="notas : ${allNotas}">
+                <button class="btn btn-outline-dark"><a  th:href="@{/anotacao/{id}(id=${notas.id})}">VER</a></button>
+                <button class="btn btn-outline-dark" ><a  th:href="@{/anotacao/deletar/{id}(id=${notas.id})}">APAGAR</a></button>
+                <div class="titulo">
                 <p th:text="${notas.titulo}"></p>
-                <a th:href="${'/anotacao/' + notas.id}" class="btn btn-info">Ver</a>
+                </div>
             </div>
         </div>
     </div>

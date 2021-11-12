@@ -45,4 +45,12 @@ public class AnotacaoController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/anotacao/deletar/{id}")
+    public String removerAnotacao(@PathVariable Long id){
+        anotacaoRepository.deleteById(id);
+        return "redirect:/home";
+    }
+
+
 }
