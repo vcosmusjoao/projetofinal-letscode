@@ -8,6 +8,11 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+    body{
+        background-color:#ebebeb;
+    }
+</style>
     <div class="container text-center">
         <h2 class="text-center">Cadastro de anotação</h2>
         <form th:action="@{/cadastro_anotacao}" th:object="${anotacao}" method="post" style="max-width: 600px; margin: 0 auto;">

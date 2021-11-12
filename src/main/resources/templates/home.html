@@ -9,6 +9,9 @@
 </head>
 <body>
     <style>
+        body{
+            background-color:#ebebeb;
+        }
         .containerNotas {
             width: 100%;
             overflow: auto;
@@ -36,12 +39,27 @@
             padding-left: 1vw;
             padding-right: 1vw;
         }
+        a{
+            margin-top:10px;
+            color:#000;
+        }
+        a:link{
+            color:#000;
+        }
+        a:hover{
+            color:#fff;
+        }
+        a:link:hover{
+            color:#fff;
+        }
+
     </style>
 
-    <hr>
+    <hr size="10">
     <div class="container text-center">
         <h2 th:text="${'Bem vindo(a), '+ nome}"></h2>
         <a th:href="@{/anotacao}" class="btn btn-info">Nova anotação</a>
+        <a th:href="@{/}" class="btn btn-info">Sair</a>
         <br />
         <div class="containerNotas">
             <p th:text="${nullNotas}"></p>
