@@ -2,6 +2,7 @@ package br.com.letscode.spring.projetofinal.controller;
 
 import br.com.letscode.spring.projetofinal.model.UsuariosLogados;
 import br.com.letscode.spring.projetofinal.repository.AnotacaoRepository;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class HomeController {
                 model.addAttribute("nullNotas", "Você não possui notas!");
             }
             model.addAttribute("allNotas", anotacao.buscarTodos(logins.getUsuarios().getId()));
+
 
             return "home";
         }
