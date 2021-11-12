@@ -17,13 +17,13 @@ public class LoginController {
     @Autowired
     private UsuariosLogados login;
 
-    @RequestMapping( value="/login", method = RequestMethod.GET)
+    @GetMapping( value="/login")
     public String getLoginForm(){
         return "login";
     }
 
-    @RequestMapping( value="/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute(name = "loginForm")LoginForm loginForm, Model model){
+    @PostMapping( value="/login")
+    public String login(@ModelAttribute(name = "loginForm")LoginForm loginForm, Model model) {
         String email = loginForm.getEmail();
         String senha = loginForm.getSenha();
 
@@ -36,5 +36,12 @@ public class LoginController {
 
         model.addAttribute("erroLogin", "Usuário inválido!");
         return "login";
+    }
+
+    @GetMapping( value="/sair")
+    public String sair(){
+        login.setUsuarios(null);
+
+        return "redirect:/";
     }
 }

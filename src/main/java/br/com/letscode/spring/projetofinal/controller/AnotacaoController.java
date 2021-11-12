@@ -17,7 +17,7 @@ public class AnotacaoController {
     @Autowired
     private AnotacaoRepository anotacaoRepository;
 
-    @RequestMapping( value="/anotacao", method = RequestMethod.GET)
+    @GetMapping( value="/anotacao")
     public String getCadastroForm(){
         if (usuariosLogados.getUsuarios().getId() != null) {
             return "cadastro-anotacao";
@@ -36,21 +36,33 @@ public class AnotacaoController {
 
     @GetMapping("/anotacao/{id}")
     public String getAnotacao(@PathVariable Long id, Model model) {
-        if (usuariosLogados.getUsuarios().getId() != null) {
-            Anotacao anotacao = anotacaoRepository.getById(id);
-            model.addAttribute("anotacao", anotacao);
+        Long idUsu = usuariosLogados.getUsuarios().getId();
 
-            return "/anotacao";
+        if (idUsu != null) {
+            Anotacao anotacao = anotacaoRepository.getById(id);
+
+            if (anotacao.getUsuario().getId() == idUsu) {
+                model.addAttribute("anotacao", anotacao);
+
+                return "/anotacao";
+            }
         }
 
-        return "redirect:/login";
+        return "redirect:/home";
     }
 
     @GetMapping("/anotacao/deletar/{id}")
     public String removerAnotacao(@PathVariable Long id){
-        anotacaoRepository.deleteById(id);
+        Long idUsu = usuariosLogados.getUsuarios().getId();
+
+        if (idUsu != null) {
+            Anotacao anotacao = anotacaoRepository.getById(id);
+
+            if (anotacao.getUsuario().getId() == idUsu) {
+                anotacaoRepository.delete(anotacao);
+            }
+        }
+
         return "redirect:/home";
     }
-
-
 }
