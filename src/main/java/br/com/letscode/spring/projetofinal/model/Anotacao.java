@@ -1,5 +1,6 @@
 package br.com.letscode.spring.projetofinal.model;
 
+import java.time.LocalDate;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,6 @@ public class Anotacao {
     private String titulo;
     @Column(nullable = false)
     private String nota;
-
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;

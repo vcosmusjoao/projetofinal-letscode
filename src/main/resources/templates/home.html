@@ -25,7 +25,7 @@
 
   .notas {
     width: 200px;
-    height: 150px;
+    height: 170px;
     background-color: #feb272;
     margin-top: 10px;
     margin-left: 10px;
@@ -70,6 +70,7 @@
       <div class="titulo">
         <p th:text="${notas.titulo}"></p>
       </div>
+      <p style="font-weight: bold" th:text="${#dates.format(#dates.createNow(),'dd/MM/YY')}"></p>
     </div>
   </div>
 </div>
