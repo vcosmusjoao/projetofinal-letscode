@@ -5,18 +5,30 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
     <style>
+        body{
+            background-image: url("https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWluaW1hbGlzbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
+            background-repeat: no-repeat;
+            background-color:#ebebeb;
+        }
+
         a{
             color:#fff;
         }
+        h1{
+            font-family: 'Roboto', sans-serif;
+        }
     </style>
 
-    <div class="container text-center">
+    <div class="container text-center" style="margin-top:20vw;">
         <h1>Minhas Anotações</h1>
-        <button class="btn btn-info"><a  th:href="@{/login}">Log in</a></button>
-        <button class="btn btn-info"><a  th:href="@{/registro}">Registrar</a>
+        <a th:href="@{/login}" class="btn btn-info">Log-In</a>
+        <a th:href="@{/registro}" class="btn btn-info">Registrar</a>
         </button>
     </div>
 </body>

@@ -8,7 +8,12 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container text-center">
+<style>
+    body{
+        background-color:#ebebeb;
+    }
+</style>
+<div class="container text-center" style="margin-top:10vw;">
     <h1 class="ml-5">Login Form</h1>
 
     <form th:action="@{/login}" th:object="${loginForm}" method="post" style="max-width: 600px; margin: 0 auto;">
