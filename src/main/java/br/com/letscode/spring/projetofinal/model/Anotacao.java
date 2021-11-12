@@ -17,7 +17,7 @@ public class Anotacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length=50)
     private String titulo;
     @Column(nullable = false)
     private String nota;
