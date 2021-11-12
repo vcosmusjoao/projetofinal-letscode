@@ -59,14 +59,14 @@
 <div class="container text-center">
   <h2 th:text="${'Bem vindo(a), '+ nome}"></h2>
   <a th:href="@{/anotacao}" class="btn btn-info">Nova anotação</a>
-  <a th:href="@{/}" class="btn btn-info">Sair</a>
+  <a th:href="@{/sair}" class="btn btn-info">Sair</a>
   <br />
   <div class="containerNotas">
     <p th:text="${nullNotas}"></p>
 
     <div class="notas" th:each="notas : ${allNotas}">
-      <button class="btn btn-outline-dark"><a  th:href="@{/anotacao/{id}(id=${notas.id})}">VER</a></button>
-      <button class="btn btn-outline-dark" ><a  th:href="@{/anotacao/deletar/{id}(id=${notas.id})}">APAGAR</a></button>
+      <a th:href="@{/anotacao/{id}(id=${notas.id})}" class="btn btn-outline-dark">VER</a>
+      <a th:href="@{/anotacao/deletar/{id}(id=${notas.id})}" class="btn btn-outline-dark">APAGAR</a>
       <div class="titulo">
         <p th:text="${notas.titulo}"></p>
       </div>

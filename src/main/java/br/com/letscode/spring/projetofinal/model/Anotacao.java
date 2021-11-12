@@ -1,6 +1,5 @@
 package br.com.letscode.spring.projetofinal.model;
 
-import java.time.LocalDate;
 import lombok.*;
 
 import javax.persistence.*;

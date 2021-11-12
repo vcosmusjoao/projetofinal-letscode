@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequestMapping("rest")
 @RestController
 public class AnotacaoRestController {
@@ -18,40 +21,54 @@ public class AnotacaoRestController {
     @Autowired
     private AnotacaoRepository anotacaoRepository;
 
-    @RequestMapping( value="/anotacao", method = RequestMethod.GET)
-    public String getCadastroForm(){
+    @GetMapping("/home")
+    public List<Anotacao> getAll() {
+        List<Anotacao> notas = null;
+
         if (usuariosLogados.getUsuarios().getId() != null) {
-            return "cadastro-anotacao";
+            notas = anotacaoRepository.buscarTodos(usuariosLogados.getUsuarios().getId());
         }
 
-        return "redirect:/login";
+        return notas;
     }
 
     @PostMapping("/cadastro_anotacao")
-    public String processRegister(Anotacao anotacao) {
+    public Anotacao processRegister(@RequestBody Anotacao anotacao) {
         anotacao.setUsuario(usuariosLogados.getUsuarios());
         anotacaoRepository.save(anotacao);
 
-        return "redirect:/home";
+        return anotacao;
     }
 
     @GetMapping("/anotacao/{id}")
-    public String getAnotacao(@PathVariable Long id, Model model) {
-        if (usuariosLogados.getUsuarios().getId() != null) {
-            Anotacao anotacao = anotacaoRepository.getById(id);
-            model.addAttribute("anotacao", anotacao);
+    public Anotacao getAnotacao(@PathVariable Long id) {
+        Long idUsu = usuariosLogados.getUsuarios().getId();
 
-            return "/anotacao";
+        if (idUsu != null) {
+            Anotacao anotacao = anotacaoRepository.getById(id);
+
+            if (anotacao.getUsuario().getId() == idUsu) {
+                return anotacao;
+            }
         }
 
-        return "redirect:/login";
+        return null;
     }
 
-    @GetMapping("/anotacao/deletar/{id}")
-    public String removerAnotacao(@PathVariable Long id){
-        anotacaoRepository.deleteById(id);
-        return "redirect:/home";
+    @DeleteMapping("/anotacao/deletar/{id}")
+    public Anotacao removerAnotacao(@PathVariable Long id){
+        Long idUsu = usuariosLogados.getUsuarios().getId();
+
+        if (idUsu != null) {
+            Anotacao anotacao = anotacaoRepository.getById(id);
+
+            if (anotacao.getUsuario().getId() == idUsu) {
+                anotacaoRepository.delete(anotacao);
+
+                return anotacao;
+            }
+        }
+
+        return null;
     }
-
-
 }
