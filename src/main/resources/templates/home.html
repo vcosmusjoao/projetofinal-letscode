@@ -1,67 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <style>
-        .containerNotas {
-            width: 100%;
-            overflow: auto;
-            margin:0 auto;
-            margin-top:10px;
-            display:flex;
-            justify-content: center;
-            flex-wrap: wrap;
+<style>
+  body{
+    background-color:#ebebeb;
+  }
+  .containerNotas {
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-        }
+  .notas {
+    width: 200px;
+    height: 150px;
+    background-color: #feb272;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-        .notas {
-            width: 200px;
-            height: 150px;
-            background-color: #feb272;
-            margin-top: 10px;
-            margin-left: 10px;
-            padding: 10px;
-            text-align: center;
-            text-transform:uppercase;
+  .titulo {
+    padding-top: 2vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  a{
+    margin-top:10px;
+    color:#000;
+  }
+  a:link{
+    color:#000;
+  }
+  a:hover{
+    color:#fff;
+  }
+  a:link:hover{
+    color:#fff;
+  }
 
-        }
+</style>
 
-        .texto{
-            padding-top: 2vw;
-            padding-left: 1vw;
-            padding-right: 1vw;
-        }
+<hr size="10">
+<div class="container text-center">
+  <h2 th:text="${'Bem vindo(a), '+ nome}"></h2>
+  <a th:href="@{/anotacao}" class="btn btn-info">Nova anotação</a>
+  <a th:href="@{/}" class="btn btn-info">Sair</a>
+  <br />
+  <div class="containerNotas">
+    <p th:text="${nullNotas}"></p>
 
-    </style>
-
-    <hr>
-    <div class="container text-center">
-        <h2 th:text="${'Bem vindo(a), '+ nome}"></h2>
-        <a th:href="@{/anotacao}" class="btn btn-info">Nova anotação</a>
-        <br />
-        <div class="containerNotas">
-            <p th:text="${nullNotas}"></p>
-
-            <div class="notas" th:each="notas : ${allNotas}">
-<<<<<<< HEAD
-                <button  th:href="@{/anotacao}" class="btn btn-outline-dark">VER</button>
-                <button  th:href="@{/anotacao}" class="btn btn-outline-dark">APAGAR</button>
-                <div class="texto">
-                    <p th:text="${notas.titulo}"></p>
-                </div>
-
-=======
-                <p th:text="${notas.titulo}"></p>
-                <a th:href="${'/anotacao/' + notas.id}" class="btn btn-info">Ver</a>
->>>>>>> 18fb77d1a53474e237bf9aa29faec97cde2b6efa
-            </div>
-        </div>
+    <div class="notas" th:each="notas : ${allNotas}">
+      <button class="btn btn-outline-dark"><a  th:href="@{/anotacao/{id}(id=${notas.id})}">VER</a></button>
+      <button class="btn btn-outline-dark" ><a  th:href="@{/anotacao/deletar/{id}(id=${notas.id})}">APAGAR</a></button>
+      <div class="titulo">
+        <p th:text="${notas.titulo}"></p>
+      </div>
     </div>
+  </div>
+</div>
 </body>
 </html>

@@ -8,9 +8,26 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+    body{
+        background-color:#ebebeb;
+        margin-top:10px;
+    }
+    a{
+        margin-top:10px;
+    }
+    a:link{
+        color:#000;
+    }
+    a:hover{
+        color:#fff;
+    }
+    a:link:hover{
+        color:#fff;
+    }
+</style>
     <div class="container text-center">
         <h2 class="text-center">Anotação</h2>
-        <a th:href="@{/home}" class="btn btn-info">Voltar</a>
         <form th:action="@{/cadastro_anotacao}" th:object="${anotacao}" method="post" style="max-width: 600px; margin: 0 auto;">
             <div class="m-3">
                 <div class="form-group row">
@@ -26,6 +43,7 @@
                         <textarea class="form-control" th:field="${anotacao.nota}" type="text"
                                   id="nota" name="nota" autofocus="autofocus" disabled required>
                         </textarea>
+                        <a th:href="@{/home}" class="btn btn-info">Voltar</a>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-package br.com.letscode.spring.projetofinal.controller;
+package br.com.letscode.spring.projetofinal.restcontroller;
 
 import br.com.letscode.spring.projetofinal.model.Anotacao;
 import br.com.letscode.spring.projetofinal.model.UsuariosLogados;
@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-public class AnotacaoController {
+@RequestMapping("rest")
+@RestController
+public class AnotacaoRestController {
 
     @Autowired
     private UsuariosLogados usuariosLogados;
