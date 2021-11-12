@@ -17,6 +17,3 @@ Funcionalidades:
 -Ver todas as Notas
 -Ver nota completa
 -Apagar uma nota
-
-Verificações:
--Verifica se o usuario estar logado. 
